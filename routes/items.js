@@ -1,85 +1,80 @@
-const {getItems, getItem, addItem, deleteItem, updateItem} = require('../controllers/items');
+const { getItems, getItem, addItem, deleteItem, updateItem } = require('../controllers/items');
 
 //  options for get all items
 const Item = {
     type: 'object',
-    properties:{
-        id:{
-            type:'string'
+    properties: {
+        id: {
+            type: 'string'
         },
-        name:{type:'string'}
+        name: { type: 'string' }
     }
-}
+};
 
 const getItemsOpts = {
-    schema:{
-        response:{
+    schema: {
+        response: {
             200: {
-                type:'array',
+                type: 'array',
                 items: Item
             }
         }
     },
-    handler: getItems,
-
-}
+    handler: getItems
+};
 
 const getItemOpts = {
-    schema:{
-        response:{
-            200: Item,
+    schema: {
+        response: {
+            200: Item
         }
     },
-    handler: getItem,
-}
+    handler: getItem
+};
 
 const postItemOpts = {
-    schema:{
-        body:{
-            type:'object',
-            required:["name"],
-            name:{type:'string'}
+    schema: {
+        body: {
+            type: 'object',
+            required: ['name'],
+            name: { type: 'string' }
         },
-        response:{
-            201: Item,
+        response: {
+            201: Item
         }
     },
-    handler: addItem,
-}
-
+    handler: addItem
+};
 
 const deleteItemOpts = {
-    schema:{
-        response:{
+    schema: {
+        response: {
             200: {
-                type:'object',
-                properties:{message:{type:'string'}}
-            },
+                type: 'object',
+                properties: { message: { type: 'string' } }
+            }
         }
     },
-    handler: deleteItem,
-}
-
+    handler: deleteItem
+};
 
 const udpateItemOpts = {
-    schema:{
-        response:{
-            200: Item,
+    schema: {
+        response: {
+            200: Item
         }
     },
-    handler: updateItem,
-}
+    handler: updateItem
+};
 
+function itemRoutes(fastify, options, done) {
+    fastify.get('/items', getItemsOpts);
+    fastify.get('/items/:id', getItemOpts);
+    fastify.post('/items', postItemOpts);
+    fastify.delete('/items/:id', deleteItemOpts);
+    fastify.put('/items/:id', udpateItemOpts);
 
-function itemRoutes(fastify, options, done){
-
-    fastify.get('/items', getItemsOpts)
-    fastify.get('/items/:id', getItemOpts)
-    fastify.post('/items', postItemOpts)
-    fastify.delete('/items/:id', deleteItemOpts)
-    fastify.put('/items/:id', udpateItemOpts)
-  
     done();
 }
 
-module.exports = itemRoutes
+module.exports = itemRoutes;
