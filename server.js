@@ -27,3 +27,8 @@ const start = async () => {
 };
 
 start();
+
+export default async (req, res) => {
+    await fastify.ready();
+    fastify.server.emit('request', req, res);
+};
