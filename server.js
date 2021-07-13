@@ -1,5 +1,5 @@
 // Require the framework and instantiate it
-const PORT = 3000;
+// const PORT = 3000;
 
 const fastify = require('fastify')({
     logger: true
@@ -17,16 +17,16 @@ fastify.register(require('fastify-swagger'), {
 
 fastify.register(require('./routes/items'));
 
-const start = async () => {
-    try {
-        await fastify.listen(PORT);
-    } catch (error) {
-        fastify.log.error(error);
-        process.exit(1);
-    }
-};
+// const start = async () => {
+//     try {
+//         await fastify.listen(PORT);
+//     } catch (error) {
+//         fastify.log.error(error);
+//         process.exit(1);
+//     }
+// };
 
-start();
+// start();
 
 export default async (req, res) => {
     await fastify.ready();
