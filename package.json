@@ -6,7 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server",
-    "dev": "nodemon server",
+    "dev": "nodemon server-dev",
     "lint": "eslint --fix .",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
   },
